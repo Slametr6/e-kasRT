@@ -42,10 +42,6 @@
                                                     <button class="item" data-toggle="modal" data-target="#editWarga<?= $val->idWarga;?>" title="Edit">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" title="Delete">
-													<a href="#!" onclick="deleteConfirm('<?= base_url('warga/delWarga/'. $val->idWarga);?>')" >
-                                                        <i class="zmdi zmdi-delete" style="color:red"></i></a>
-                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>

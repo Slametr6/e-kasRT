@@ -5,13 +5,19 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-							<div class="table-data__tool">
-								<div class="table-data__tool-left">
-									<h3 class="title-5 m-b-35">laporan data kas</h3>                                    
-                                </div>
+                            <div class="table-data__tool">
+                                <h3 class="title-5 m-b-35">laporan data kas</h3>                                
+                                <!-- <div class="table-data__tool-left">
+									<a class="au-btn-filter">
+											<i class="zmdi zmdi-filter"> from </i><input type="date"></a>
+									<a class="au-btn-filter">
+											<i class="zmdi zmdi-filter"> to </i><input type="date"></a>
+                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="top">
+                                            <i class="zmdi zmdi-search"></i>cari</button>
+                                </div> -->
                                 <div class="table-data__tool-right">
-                                    <button class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="top">
-                                        <i class="zmdi zmdi-print"></i>print</button>
+                                    <a href="<?= base_url();?>kasrt/lapkas" class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="top">
+                                        <i class="zmdi zmdi-print"></i>print</a>
                                 </div>
                             </div>
                             <!-- DATA TABLE-->

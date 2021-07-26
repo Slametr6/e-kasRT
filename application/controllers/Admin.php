@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
 				$data['masuk'] = $this->m_kas->TotalMasuk();
 				$data['keluar'] = $this->m_kas->TotalKeluar();
 				$this->load->view('include/header', $data);
-				$this->load->view('admin/index', $data);
+				$this->load->view('index', $data);
 				$this->load->view('include/footer'); 
 				
 			} else if ($user['role_id'] == 3) {

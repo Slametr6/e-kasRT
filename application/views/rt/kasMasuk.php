@@ -7,12 +7,12 @@
                         <div class="col-md-12">
 							<div class="table-data__tool">
 								<div class="table-data__tool-left">
-									<h3 class="title-5 m-b-35">data kas keluar</h3>                                    
+									<h3 class="title-5 m-b-35">data kas Masuk</h3>                                    
                                 </div>
-                                <div class="table-data__tool-right">
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addKasKeluarModal">
+                                <!-- <div class="table-data__tool-right">
+                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addKasMasukModal">
                                         <i class="zmdi zmdi-plus"></i>Pengeluaran</button>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- DATA TABLE-->
 							<div class="table-responsive m-b-40">
@@ -23,27 +23,15 @@
                                             <th>keterangan</th>
                                             <th>tanggal</th>
                                             <th>jumlah</th>
-                                            <th>aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-										<?php foreach ($keluar as $kel) { ?>
+										<?php foreach ($masuk as $msk) { ?>
                                         <tr>
-                                            <td><?= $kel->idKas;?></td>
-                                            <td><?= $kel->keterangan;?></td>
-                                            <td><?= date('d-m-Y', strtotime($kel->tanggal));?></td>
-                                            <td class="process">Rp <?= rupiah($kel->jumlah);?></td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="modal" data-target="#editKasModal<?= $kel->idKas;?> " data-placement="top" title="Edit">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-													<a href="#!" onclick="deleteConfirm('<?= $kel->idKas;?>')" >
-                                                        <i class="zmdi zmdi-delete" style="color:red"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                            <td><?= $msk->idKas;?></td>
+                                            <td><?= $msk->keterangan;?></td>
+                                            <td><?= date('d-m-Y', strtotime($msk->tanggal));?></td>
+                                            <td class="process">Rp <?= rupiah($msk->jumlah);?></td>
                                         </tr>
                                         <?php } ?>
                                     </tbody>
@@ -55,9 +43,8 @@
 										}
 									?>
 										<tr>
-											<th colspan="3" scope="col">TOTAL <small>(Keluaran)</small></th>
+											<th colspan="3" scope="col">TOTAL <small>(Pemasukan)</small></th>
 											<th scope="col">Rp <?= rupiah($sum);?></th>
-											<th scope="col">&nbsp;</th>
 										</tr>
 									</thead>
                                 </table>
@@ -69,12 +56,12 @@
             </section>
             <!-- END DATA TABLE-->
 			
-			<!-- modal addKasKeluar -->
-			<div class="modal fade" id="addKasKeluarModal" tabindex="-1" role="dialog" aria-labelledby="addKasKeluarModal" aria-hidden="true">
+			<!-- modal addKasMasuk -->
+			<div class="modal fade" id="addKasMasukModal" tabindex="-1" role="dialog" aria-labelledby="addKasMasukModal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title" id="addKasKeluarModal">Tambah Kas Keluar</h4>
+							<h4 class="modal-title" id="addKasMasukModal">Tambah Kas Masuk</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="modal-body">
@@ -94,11 +81,11 @@
 									</div>
 									<div class="form-group">
 										<label>Jumlah</label>
-										<input class="form-control" type="number" name="jumlah" id="jumlah" placeholder="Jumlah Kas Keluar" value="<?= set_value('jumlah');?>" required>
+										<input class="form-control" type="number" name="jumlah" id="jumlah" placeholder="Jumlah Kas Masuk" value="<?= set_value('jumlah');?>" required>
 									</div>
 									<div class="form-group" hidden>
 										<label>Jenis</label>
-										<input class="form-control" type="text" name="jenis" id="jenis" value="keluar" required>
+										<input class="form-control" type="text" name="jenis" id="jenis" value="masuk" required>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -110,16 +97,16 @@
 					</div>
 				</div>
 			</div>
-			<!-- end modal addKasKeluar -->
+			<!-- end modal addKasMasuk -->
 			
 			<!-- modal editKasModal -->
 			<?php $no = 0;
-				foreach($keluar as $val): $no++;?>
+				foreach($masuk as $val): $no++;?>
 			<div class="modal fade" id="editKasModal<?= $val->idKas;?>" tabindex="-1" role="dialog" aria-labelledby="editKasModal" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title" id="editKasModal">Edit Kas Keluar</h4>
+							<h4 class="modal-title" id="editKasModal">Edit Kas Masuk</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						</div>
 						<div class="modal-body">

@@ -70,18 +70,13 @@
                                     <i class="fas fa-bar-chart-o"></i>
                                     <span class="bot-line"></span>Laporan</a>
                             </li>
-                            <li>
-                                <a href="<?= base_url('admin/user');?>">
-                                    <i class="fas fa-users"></i>
-                                    <span class="bot-line"></span>Akses</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="header__tool">
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="<?= base_url('assets/profil/'. $user['img']);?>" alt="John Doe" />
+                                    <img src="<?= base_url();?>assets/avatar.png" alt="John Doe" />
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#"><?= $user['username'];?></a>

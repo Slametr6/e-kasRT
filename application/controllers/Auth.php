@@ -106,20 +106,20 @@ class Auth extends CI_Controller {
 			$this->load->view('admin/user');
 
 		} else {
-			$upload_img = $_FILES['image']['name'];
+			$upload_img = $_FILES['img']['name'];
 
 			if ($upload_img) {
-				$config['upload_path'] = 'assets/images/profile/';
+				$config['upload_path'] = 'assets/profil/';
 				$config['allowed_types'] = 'jpg|gif|png|jpeg|JPG|PNG';
 				$config['max_size'] = '1024';
 				$this->load->library('upload', $config);
-				if ($this->upload->do_upload('image')) {
-					$def_img = $user['image'];
+				if ($this->upload->do_upload('img')) {
+					$def_img = $user['img'];
 					if ($def_img != 'avatar.png') {
-						unlink(FCPATH.'assets/images/profile/'.$def_img);
+						unlink(FCPATH.'assets/profil/'.$def_img);
 					}
 					$new_img = $this->upload->data('file_name');
-					$this->db->set('image', $new_img);
+					$this->db->set('img', $new_img);
 
 				} else {
 					echo $this->upload->display_errors();

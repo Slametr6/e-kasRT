@@ -55,6 +55,31 @@ class M_kas extends CI_Model {
 		return $this->db->query('SELECT SUM(jumlah) as total from data_kas where jenis="keluar" ')->result();
 	}
 
+	public function getWarga($idWarga = '')
+	{
+		if ($idWarga) {
+			return $this->db->get('data_warga', ['idWarga' => $idWarga])->row_array();
+
+		} else {
+			return $this->db->get('data_warga')->result();
+		}
+	}
+
+	public function saveWarga($data)
+	{
+		return $this->db->insert('data_warga', $data);
+	}
+
+	public function updateWarga($data, $idWarga)
+	{
+		return $this->db->update('data_warga', $data, ['idWarga' => $idWarga]);
+	}
+
+	public function delWarga($idWarga)
+	{
+		return $this->db->delete('data_warga', ['idWarga' => $idWarga]);
+	}
+
 }
 
 /* End of file M_kas.php */

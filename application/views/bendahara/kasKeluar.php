@@ -11,7 +11,7 @@
                                 </div>
                                 <div class="table-data__tool-right">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addKasKeluarModal">
-                                        <i class="zmdi zmdi-plus"></i>add item</button>
+                                        <i class="zmdi zmdi-plus"></i>pemasukan</button>
                                 </div>
                             </div>
                             <!-- DATA TABLE-->

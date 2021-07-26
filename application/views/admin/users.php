@@ -11,7 +11,7 @@
                                 </div>
                                 <div class="table-data__tool-right">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addUserModal">
-                                        <i class="zmdi zmdi-plus"></i>add user</button>
+                                        <i class="zmdi zmdi-plus"></i>user</button>
                                 </div>
                             </div>
                             <!-- DATA TABLE-->
@@ -33,7 +33,7 @@
                                         <tr>
                                             <td><?= $val->user;?></td>
                                             <td><?= $val->username;?></td>
-                                            <td><img width="20%" src="<?= base_url('assets/'). $val->img;?>" /></td>
+                                            <td><img width="20%" src="<?= base_url('assets/profil/'). $val->img;?>" /></td>
                                             <td class="process"><?= $val->is_active;?></td>
                                             <td class="process"><?= $val->role;?></td>
                                             <td><?= $val->email;?></td>
@@ -125,15 +125,15 @@
 									</div>
 									<div class="form-group">
 										<label>Username</label>
-										<input class="form-control" type="text" name="username" id="username" placeholder="Username" value="<?= $val->username;?>" readonly >
+										<input class="form-control" type="text" name="username" id="username" placeholder="Username" value="<?= $val->username;?>"  >
 									</div>
 									<div class="form-group">
 										<label>Gambar</label>
 										<div class="col-sm">
-											<img src="<?= base_url('assets/').$val->img;?>" class="img-thumbnail" width="150px" hight="150px" >
+											<img src="<?= base_url('assets/profil/').$val->img;?>" class="img-thumbnail" width="150px" hight="150px" >
 										</div>
 										<div class="col-sm">
-											<input type="file" class="form-control-file" id="image" name="image">
+											<input type="file" class="form-control-file" id="img" name="img">
 										</div>
 									</div>
 									<div class="form-group">
