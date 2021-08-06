@@ -5,7 +5,7 @@ Aplikasi e-kasRT merupakan aplikasi kas sederhana yang dapat digunakan untuk mem
 Berikut merupakan tampilan program yang dibuat.
 
 # Tampilan Login
-![image](https://user-images.githubusercontent.com/53107522/128451680-a37fba60-e76d-49b5-bced-957907f1712d.png)
+![image](https://user-images.githubusercontent.com/53107522/128481299-c572ed8e-9f40-43b7-8771-0354ce534d26.png)
 
 # Tampilan Dashboard
 ![image](https://user-images.githubusercontent.com/53107522/128451767-13f818ac-e11a-4640-8e97-5c62be273189.png)
