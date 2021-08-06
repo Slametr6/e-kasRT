@@ -1,4 +1,5 @@
 # e-kasRT
+**Aplikasi Kas RT**
 
 Aplikasi e-kasRT merupakan aplikasi kas sederhana yang dapat digunakan untuk memanajemen keuangan di wilayah RT.
 Berikut merupakan tampilan program yang dibuat.
