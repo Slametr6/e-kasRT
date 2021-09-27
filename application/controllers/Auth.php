@@ -1,13 +1,14 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
 
 	public function index()
 	{
 		if ($this->session->userdata('username')) {
 			redirect('admin/user');
-		} 
+		}
 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -15,7 +16,6 @@ class Auth extends CI_Controller {
 			$data['menu'] = 'login';
 			$data['judul'] = 'Login Page';
 			$this->load->view('login', $data);
-
 		} else {
 			$this->_cekLogin();
 		}
@@ -40,24 +40,21 @@ class Auth extends CI_Controller {
 
 					if ($user['role_id'] == 1) {
 						redirect('admin');
-
-					} else if  ($user['role_id'] == 3) {
+					} else if ($user['role_id'] == 3) {
 						redirect('users/bendahara');
-
-					} else {
+					} else if ($user['role_id'] == 2) {
 						redirect('users');
+					} else {
+						redirect('users/warga');
 					}
-
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
 					redirect('auth');
 				}
-
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username is not activating!</div>');
 				redirect('auth');
 			}
-
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username is not registered!</div>');
 			redirect('auth');
@@ -81,14 +78,13 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Username must be unique!</div>');
 			redirect('admin/user');
-
 		} else {
 			$data = [
 				'user' => htmlspecialchars($this->input->post('user', TRUE)),
 				'username' => htmlspecialchars($this->input->post('username')),
 				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 				'img' => 'avatar.png',
-				'role_id' => 2,
+				'role_id' => 4,
 				'is_active' => 1
 			];
 			$this->m_auth->save($data);
@@ -104,7 +100,6 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('user', 'Full name', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('admin/user');
-
 		} else {
 			$upload_img = $_FILES['img']['name'];
 
@@ -116,11 +111,10 @@ class Auth extends CI_Controller {
 				if ($this->upload->do_upload('img')) {
 					$def_img = $user['img'];
 					if ($def_img != 'avatar.png') {
-						unlink(FCPATH.'assets/profil/'.$def_img);
+						unlink(FCPATH . 'assets/profil/' . $def_img);
 					}
 					$new_img = $this->upload->data('file_name');
 					$this->db->set('img', $new_img);
-
 				} else {
 					echo $this->upload->display_errors();
 				}
@@ -138,7 +132,6 @@ class Auth extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">User updated successfully!</div>');
 			redirect('admin/user');
 		}
-		
 	}
 
 	public function delUser($id)
@@ -156,74 +149,72 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('new_password1', 'New Password', 'trim|required|min_length[5]|matches[new_password2]');
 		$this->form_validation->set_rules('new_password2', 'Confirm Password', 'trim|required|matches[new_password1]');
 		if ($this->form_validation->run() == FALSE) {
-			if($user['role_id'] == 1) {
+			if ($user['role_id'] == 1) {
 				redirect('admin');
-
 			} else if ($user['role_id'] == 3) {
-				redirect('user/manager');
-
+				redirect('users/bendahara');
+			} else if ($user['role_id'] == 2) {
+				redirect('users');
 			} else {
-				redirect('user');
+				redirect('user/warga');
 			}
-
 		} else {
 			$current_password = $this->input->post('current_password');
 			$new_password = $this->input->post('new_password1');
 			if (!password_verify($current_password, $user['password'])) {
-				if($user['role_id'] == 1) {
+				if ($user['role_id'] == 1) {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
 					redirect('admin');
-	
 				} else if ($user['role_id'] == 3) {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
-					redirect('user/manager');
-
+					redirect('users/bendahara');
+				} else if ($user['role_id'] == 2) {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
+					redirect('users');
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
-					redirect('user');
+					redirect('users/warga');
 				}
-
 			} else {
 				// password tidak boleh sama
 				if ($current_password == $new_password) {
-					if($user['role_id'] == 1) {
+					if ($user['role_id'] == 1) {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">New password must be diferent from current password!</div>');
 						redirect('admin');
-		
 					} else if ($user['role_id'] == 3) {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">New password must be diferent from current password!</div>');
-						redirect('user/manager');
-
+						redirect('users/bendahara');
+					} else if ($user['role_id'] == 2) {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">New password must be diferent from current password!</div>');
+						redirect('users');
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">New password must be diferent from current password!</div>');
-						redirect('user');
+						redirect('users/warga');
 					}
-
 				} else {
 					$password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 					$password = $this->input->post('password', $password_hash);
 
 					$this->db->set('password', $password_hash)
-								->where('username', $username)
-								->update('users');
+						->where('username', $username)
+						->update('users');
 
-					if($user['role_id'] == 1) {
+					if ($user['role_id'] == 1) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password changed successfully</div>');
 						redirect('admin');
-
-					} else if($user['role_id'] == 3) {
+					} else if ($user['role_id'] == 3) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password changed successfully</div>');
 						redirect('user/manager');
-
+					} else if ($user['role_id'] == 2) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password changed successfully</div>');
+						redirect('users');
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password changed successfully</div>');
-						redirect('user');
+						redirect('users/warga');
 					}
-
 				}
 			}
 		}
-		
 	}
 
 	public function resetPassword()
@@ -233,20 +224,17 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password failed to reset!</div>');
 			redirect('admin/user');
-			
 		} else {
 			$id = $this->input->post('user_id');
 			$password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
 
 			$this->db->set('password', $password)
-						->where('user_id', $id)
-						->update('users');
+				->where('user_id', $id)
+				->update('users');
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password has been reseted!</div>');
 			redirect('admin/user');
-
 		}
 	}
-
 }
 
 /* End of file Controllername.php */

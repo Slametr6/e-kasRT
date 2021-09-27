@@ -1,7 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
+	function __construct()
+	{
+		parent::__construct();
+	}
 
 	public function index()
 	{
@@ -9,7 +14,6 @@ class Admin extends CI_Controller {
 		$user = $this->db->get_where('users', ['username' => $username])->row_array();
 		if ($username == '') {
 			redirect('auth');
-
 		} else {
 			if ($user['role_id'] == 1) {
 				$data['menu'] = 'home';
@@ -19,13 +23,13 @@ class Admin extends CI_Controller {
 				$data['keluar'] = $this->m_kas->TotalKeluar();
 				$this->load->view('include/header', $data);
 				$this->load->view('index', $data);
-				$this->load->view('include/footer'); 
-				
+				$this->load->view('include/footer');
 			} else if ($user['role_id'] == 3) {
 				redirect('users/bendahara');
-
-			}else {
+			} else if ($user['role_id'] == 2) {
 				redirect('users');
+			} else {
+				redirect('users/warga');
 			}
 		}
 	}
@@ -36,7 +40,6 @@ class Admin extends CI_Controller {
 		$user = $this->db->get_where('users', ['username' => $username])->row_array();
 		if ($username == '') {
 			redirect('auth');
-
 		} else {
 			if ($user['role_id'] == 1) {
 				$data['menu'] = 'akses';
@@ -45,18 +48,17 @@ class Admin extends CI_Controller {
 				$data['auth'] = $this->m_auth->getUser();
 				$data['role'] = $this->db->get('user_role')->result();
 				$this->load->view('include/header', $data);
-				$this->load->view('admin/users', $data);
-				$this->load->view('include/footer'); 
-				
+				$this->load->view('admin/user', $data);
+				$this->load->view('include/footer');
 			} else if ($user['role_id'] == 3) {
 				redirect('users/bendahara');
-				
-			} else {
+			} else if ($user['role_id'] == 2) {
 				redirect('users');
+			} else {
+				redirect('users/warga');
 			}
 		}
 	}
-
 }
 
 /* End of file Controllername.php */

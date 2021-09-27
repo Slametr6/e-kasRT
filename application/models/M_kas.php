@@ -1,14 +1,14 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_kas extends CI_Model {
+class M_kas extends CI_Model
+{
 
 	public function getKas($idKas = '')
 	{
 		if ($idKas) {
 			return $this->db->get('data_kas', ['idKas' => $idKas])->row_array();
-
 		} else {
 			return $this->db->get('data_kas')->result();
 		}
@@ -40,6 +40,11 @@ class M_kas extends CI_Model {
 		return $this->db->get_where('data_kas', ['jenis' => 'masuk'])->result();
 	}
 
+	public function kredit()
+	{
+		return $this->db->query('SELECT jumlah from data_kas where jenis="masuk" ')->result();
+	}
+
 	public function TotalMasuk()
 	{
 		return $this->db->query('SELECT SUM(jumlah) as total from data_kas where jenis="masuk" ')->result();
@@ -48,6 +53,11 @@ class M_kas extends CI_Model {
 	public function getKasKeluar()
 	{
 		return $this->db->get_where('data_kas', ['jenis' => 'keluar'])->result();
+	}
+
+	public function debit()
+	{
+		return $this->db->query('SELECT jumlah from data_kas where jenis="keluar" ')->result();
 	}
 
 	public function TotalKeluar()
@@ -59,7 +69,6 @@ class M_kas extends CI_Model {
 	{
 		if ($idWarga) {
 			return $this->db->get('data_warga', ['idWarga' => $idWarga])->row_array();
-
 		} else {
 			return $this->db->get('data_warga')->result();
 		}
@@ -79,7 +88,6 @@ class M_kas extends CI_Model {
 	{
 		return $this->db->delete('data_warga', ['idWarga' => $idWarga]);
 	}
-
 }
 
 /* End of file M_kas.php */

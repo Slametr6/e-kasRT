@@ -26,23 +26,20 @@
                                     <thead>
                                         <tr>
                                             <th>nomor</th>
-                                            <th>tanggal</th>
                                             <th>keterangan</th>
-                                            <th>debit</th>
-                                            <th>kredit</th>
-                                            <th>saldo</th>
+                                            <th>tanggal</th>
+                                            <th>jenis</th>
+                                            <th>jumlah</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($kas as $kas) { ?>
                                             <tr>
                                                 <td><?= $kas->idKas; ?></td>
-                                                <td><?= date('d-m-Y', strtotime($kas->tanggal)); ?></td>
                                                 <td><?= $kas->keterangan; ?></td>
-                                                <td><?= $; ?></td>
-                                                <td>Rp <?= rupiah($kas->jumlah); ?></td>
-                                                <td>Rp <?= rupiah($kas->jumlah); ?></td>
-                                                <!-- <td class="process">Rp <?= rupiah($kas->jumlah); ?></td> -->
+                                                <td><?= date('d-m-Y', strtotime($kas->tanggal)); ?></td>
+                                                <td><?= $kas->jenis; ?></td>
+                                                <td class="process">Rp <?= rupiah($kas->jumlah); ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
