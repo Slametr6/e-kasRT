@@ -156,9 +156,9 @@ class KasRT extends CI_Controller
 				$data['menu'] = 'Laporan';
 				$data['judul'] = 'Laporan Kas RT';
 				$data['user'] = $user;
+				$data['debit'] = $this->m_kas->getKasMasuk();
+				$data['kredit'] = $this->m_kas->getKasKeluar();
 				$data['kas'] = $this->m_kas->getKas();
-				$data['kredit'] = $this->m_kas->kredit();
-				$data['debit'] = $this->m_kas->debit();
 				$data['masuk'] = $this->m_kas->TotalMasuk();
 				$data['keluar'] = $this->m_kas->TotalKeluar();
 				$this->load->view('include/header', $data);
@@ -202,6 +202,7 @@ class KasRT extends CI_Controller
 	{
 		$data['judul'] = 'Laporan Data Kas RT002';
 		$data['kas'] = $this->m_kas->getKas();
+		$data['kredit'] = $this->m_kas->kredit();
 		$data['masuk'] = $this->m_kas->TotalMasuk();
 		$data['keluar'] = $this->m_kas->TotalKeluar();
 		$data['konten'] = 'lap_kas';

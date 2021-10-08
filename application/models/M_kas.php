@@ -40,11 +40,6 @@ class M_kas extends CI_Model
 		return $this->db->get_where('data_kas', ['jenis' => 'masuk'])->result();
 	}
 
-	public function kredit()
-	{
-		return $this->db->query('SELECT jumlah from data_kas where jenis="masuk" ')->result();
-	}
-
 	public function TotalMasuk()
 	{
 		return $this->db->query('SELECT SUM(jumlah) as total from data_kas where jenis="masuk" ')->result();
@@ -53,11 +48,6 @@ class M_kas extends CI_Model
 	public function getKasKeluar()
 	{
 		return $this->db->get_where('data_kas', ['jenis' => 'keluar'])->result();
-	}
-
-	public function debit()
-	{
-		return $this->db->query('SELECT jumlah from data_kas where jenis="keluar" ')->result();
 	}
 
 	public function TotalKeluar()

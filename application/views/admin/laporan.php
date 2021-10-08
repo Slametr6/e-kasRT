@@ -7,14 +7,6 @@
                         <div class="col-md-12">
                             <div class="table-data__tool">
                                 <h3 class="title-5 m-b-35">laporan data kas</h3>
-                                <!-- <div class="table-data__tool-left">
-									<a class="au-btn-filter">
-											<i class="zmdi zmdi-filter"> from </i><input type="date"></a>
-									<a class="au-btn-filter">
-											<i class="zmdi zmdi-filter"> to </i><input type="date"></a>
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="top">
-                                            <i class="zmdi zmdi-search"></i>cari</button>
-                                </div> -->
                                 <div class="table-data__tool-right">
                                     <a href="<?= base_url(); ?>kasrt/lapkas" class="au-btn au-btn-icon au-btn--blue au-btn--small" data-toggle="top">
                                         <i class="zmdi zmdi-print"></i>print</a>
@@ -39,7 +31,7 @@
                                                 <td><?= $kas->idKas; ?></td>
                                                 <td><?= date('d-m-Y', strtotime($kas->tanggal)); ?></td>
                                                 <td><?= $kas->keterangan; ?></td>
-                                                <td><?= $; ?></td>
+                                                <td>Rp <?= $kas->jumlah; ?></td>
                                                 <td>Rp <?= rupiah($kas->jumlah); ?></td>
                                                 <td>Rp <?= rupiah($kas->jumlah); ?></td>
                                                 <!-- <td class="process">Rp <?= rupiah($kas->jumlah); ?></td> -->
